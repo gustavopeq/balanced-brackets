@@ -5,14 +5,26 @@ import org.junit.jupiter.api.Test;
 class MainTest {
 	
 	@Test
-	void testTrue() {
+	void testPerfectSituation() {
 		boolean output = Main.isBalanced("([]){([()])}");
 		assertEquals(true, output);
 	}
 	
 	@Test
-	void testFalse() {
+	void testFirstClosing() {
 		boolean output = Main.isBalanced("]()[]{}");
+		assertEquals(false, output);
+	}
+	
+	@Test
+	void testLastOpening() {
+		boolean output = Main.isBalanced("{()[]{{");
+		assertEquals(false, output);
+	}
+	
+	@Test
+	void testLastMissing() {
+		boolean output = Main.isBalanced("{()[{}");
 		assertEquals(false, output);
 	}
 
