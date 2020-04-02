@@ -12,8 +12,52 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		String example = "{()[]{}}";
 
-
+		System.out.println(isBalanced(example));
+	}
+	
+	public static boolean isBalanced(String brackets) 
+	{
+		String[] elements = brackets.split("");
+		
+		ArrayList<String> listOfOpened = new ArrayList<String>();
+		
+		ArrayList<String> openers = new ArrayList<String>();
+		openers.add("(");
+		openers.add("[");
+		openers.add("{");
+		
+		for(int i = 0; i < elements.length; i++) 
+		{
+			if(openers.contains(elements[i])) 
+			{
+				listOfOpened.add(elements[i]);
+			}else 
+			{
+				if(listOfOpened.isEmpty()) {
+					return false;
+				}else {
+					String lastOpened = listOfOpened.get(listOfOpened.size() - 1);
+					if((elements[i].equals(")") &&  lastOpened.equals("(")) 
+						|| (elements[i].equals("]") &&  lastOpened.equals("["))
+						|| (elements[i].equals("}") &&  lastOpened.equals("{"))) 
+					{
+						listOfOpened.remove(listOfOpened.size() - 1);
+					}else 
+					{
+						return false;
+					}
+				}
+			}
+		}
+		if(listOfOpened.isEmpty()) 
+		{
+			return true;
+		}else 
+		{
+			return false;
+		}
 	}
 	
 
