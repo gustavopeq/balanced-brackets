@@ -8,13 +8,23 @@ public class Main {
 	 * return whether the brackets are balanced (well-formed).
 	 * For example, given the string "([])[]({})", you should return true.
 	 * Given the string "([)]" or "((()", you should return false.
+	 * 
+	 * Complexity:
+	 * Time = O(N)
+	 * Space = O(N)
 	 */
 
 	public static void main(String[] args) {
 		
 		String example = "{()[]{}}";
 
-		System.out.println(isBalanced(example));
+		if(isBalanced(example)) 
+		{
+			System.out.println("The example is well formed!");
+		}else 
+		{
+			System.out.println("The example is not well formed...");
+		}
 	}
 	
 	public static boolean isBalanced(String brackets) 
