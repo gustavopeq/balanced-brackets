@@ -23,34 +23,32 @@ public class Main {
 		
 		ArrayList<String> listOfOpened = new ArrayList<String>();
 		
-		ArrayList<String> openers = new ArrayList<String>();
-		openers.add("(");
-		openers.add("[");
-		openers.add("{");
+		HashMap<String,String> mapPairs = new HashMap<String, String>();
+		mapPairs.put("(", ")");
+		mapPairs.put("[", "]");
+		mapPairs.put("{", "}");
 		
 		for(int i = 0; i < elements.length; i++) 
 		{
-			if(openers.contains(elements[i])) 
+			if(mapPairs.containsKey(elements[i])) 
 			{
 				listOfOpened.add(elements[i]);
 			}else 
 			{
-				if(listOfOpened.isEmpty()) {
-					return false;
-				}else {
+				if(!listOfOpened.isEmpty()) 
+				{
 					String lastOpened = listOfOpened.get(listOfOpened.size() - 1);
-					if((elements[i].equals(")") &&  lastOpened.equals("(")) 
-						|| (elements[i].equals("]") &&  lastOpened.equals("["))
-						|| (elements[i].equals("}") &&  lastOpened.equals("{"))) 
+					if(elements[i].equals(mapPairs.get(lastOpened))) 
 					{
 						listOfOpened.remove(listOfOpened.size() - 1);
-					}else 
-					{
-						return false;
 					}
+				}else 
+				{
+					return false;
 				}
 			}
 		}
+		
 		if(listOfOpened.isEmpty()) 
 		{
 			return true;
